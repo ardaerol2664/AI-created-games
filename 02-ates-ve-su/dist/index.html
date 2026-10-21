@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121a17">
+  <meta name="description" content="Kor ve Damla: Aynı klavyede iki kişilik ateş ve su macerası. Altı özgün tapınak, iki element, tek çıkış.">
+  <title>Kor & Damla — İki Element, Tek Yol</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="levels.js"></script>
+  <script defer src="engine.js"></script>
+  <script defer src="art.js"></script>
+  <script defer src="game.js"></script>
+</head>
+<body>
+  <svg class="symbols" aria-hidden="true"><defs>
+    <symbol id="flame" viewBox="0 0 24 28"><path d="M13 1c2 7 8 9 8 16a9 9 0 0 1-18 0c0-4 2-7 5-10-1 5 1 6 2 6 3-3 1-7 3-12Z" fill="currentColor"/><path d="M12 16c-4 5-4 8 0 9 5-1 4-5 0-9" fill="#ffe4a7"/></symbol>
+    <symbol id="drop" viewBox="0 0 24 28"><path d="M12 1C10 7 2 13 2 18a10 10 0 0 0 20 0C22 13 14 7 12 1Z" fill="currentColor"/><path d="M7 17c-2 4 1 7 4 7" fill="none" stroke="#c7fff4" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="gem" viewBox="0 0 24 24"><path d="m12 2 9 9-9 11L3 11Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m3 11 9 3 9-3M12 2v12l0 10" fill="none" stroke="currentColor" stroke-width="1"/></symbol>
+    <symbol id="restart" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="sound" viewBox="0 0 24 24"><path d="m11 5-5 4H3v6h3l5 4ZM15 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="expand" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m6 0h5v-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="diagonal-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M6 5h13v13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+  </defs></svg>
+  <div class="page">
+    <header class="site-header">
+      <a href="#" class="brand" aria-label="Kor ve Damla ana ekranı" id="brand">
+        <span class="brand-symbol"><svg class="fire"><use href="#flame"/></svg><svg class="water"><use href="#drop"/></svg></span>
+        <span><span class="brand-name">KOR <i>&</i> DAMLA</span><span class="brand-sub">İKİ ELEMENT. TEK YOL.</span></span>
+      </a>
+      <div class="header-right"><span class="coop"><span></span> 2 OYUNCU <b>·</b> AYNI KLAVYE</span><span class="divider"></span>
+        <button class="icon-button muted" id="sound-button" aria-label="Sesi aç" title="Sesi aç (M)" aria-pressed="false"><svg><use href="#sound"/></svg><span class="mute-slash"></span></button>
+        <button class="icon-button" id="fullscreen-button" aria-label="Tam ekran" title="Tam ekran (F)"><svg><use href="#expand"/></svg></button>
+      </div>
+    </header>
+    <main>
+      <div class="intro"><div><p class="eyebrow"><span class="small-diamond"></span> ORMAN TAPINAĞI <span class="eyebrow-line"></span> BİRLİKTE KEŞFEDİN</p><h1 id="level-name">Yosunlu Eşik<span class="title-dot">.</span></h1><p class="level-description" id="level-description">İki element, tek yol. Birlikte çıkışa ulaşın.</p></div><button class="outline-button" id="levels-button"><span class="grid-icon">▦</span> Bölümler <span class="button-arrow"><svg aria-hidden="true"><use href="#diagonal-arrow"/></svg></span></button></div>
+      <section class="game-shell" aria-label="İki kişilik tapınak oyunu">
+        <div class="game-bar">
+          <div class="chapter"><span class="chapter-label">KEŞİF</span><div id="level-steps" class="level-steps" aria-label="Bölüm ilerlemesi"></div></div>
+          <div class="game-stats"><span class="stat gems"><svg><use href="#gem"/></svg><b id="gem-count">0</b><span>/ 8</span></span><span class="bar-separator"></span><span class="stat timer"><svg><use href="#clock"/></svg><b id="timer">00:00</b></span></div>
+          <div class="game-actions"><button class="icon-button" id="restart-button" aria-label="Bölümü yeniden başlat" title="Yeniden başlat (R)"><svg><use href="#restart"/></svg></button><button class="icon-button pause-button" id="pause-button" aria-label="Duraklat" title="Duraklat (Esc)"><svg><use href="#pause"/></svg></button></div>
+        </div>
+        <div class="stage" id="stage">
+          <canvas id="game" width="1200" height="660" tabindex="0" aria-label="Kor ok tuşlarıyla, Damla WASD ile hareket eder. Zıplamak için yukarı veya W; kollar için aşağı veya S. Yeşil havuzdan kaçının."></canvas>
+          <div class="stage-top"><span><span class="live-dot"></span> <span id="stage-level">01</span> <span class="stage-label">/ YOSUNLU EŞİK</span></span><span class="stage-hint" id="stage-hint">ÇIKIŞA BİRLİKTE ULAŞIN <span><svg aria-hidden="true"><use href="#diagonal-arrow"/></svg></span></span></div>
+          <div class="stage-bottom"><span>← BAŞLANGIÇ</span><span class="liquid-legend"><i class="fire-bg"></i> Ateş <i class="water-bg"></i> Su <i class="poison-bg"></i> Zehir</span></div>
+          <div class="overlay" id="overlay" hidden><div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"></div></div>
+          <div class="toast" id="toast" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+      <section class="control-deck" aria-label="Nasıl oynanır">
+        <div class="control-player"><span class="element-icon fire"><svg><use href="#flame"/></svg></span><div><h2>Kor <span>ATEŞİN RUHU</span></h2><p>Ateşte özgür, suda savunmasız.</p></div><div class="keys" aria-label="Kor: ok tuşları"><div><kbd>↑</kbd></div><div><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></div></div></div>
+        <div class="control-player"><span class="element-icon water"><svg><use href="#drop"/></svg></span><div><h2>Damla <span>SUYUN RUHU</span></h2><p>Suda özgür, ateşte savunmasız.</p></div><div class="keys" aria-label="Damla: WASD"><div><kbd>W</kbd></div><div><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div></div></div>
+        <button class="help-card" id="help-button"><span class="help-icon">?</span><span><strong>Birlikte daha ileri.</strong><span>Tapınağın kurallarını keşfet</span></span><span class="help-arrow"><svg aria-hidden="true"><use href="#diagonal-arrow"/></svg></span></button>
+      </section>
+    </main>
+    <footer><span class="footer-mark">◇</span><span>Biriniz olmadan diğeri tamamlanamaz.</span><span class="footer-right"><kbd>R</kbd> Yeniden başlat <span>·</span> <kbd>ESC</kbd> Duraklat</span></footer>
+  </div>
+  <noscript>Bu oyunu oynamak için tarayıcınızda JavaScript'i etkinleştirin.</noscript>
+</body>
+</html>
