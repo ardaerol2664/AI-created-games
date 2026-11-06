@@ -2,6 +2,8 @@
 
 Her oyun, kaynak kodu ve çalıştırma yönergeleriyle birlikte ayrı bir klasörde tutulur.
 
+[Proje bağlamı ve çalışma akışı](PROJECT_CONTEXT.md): Referans oyunları mümkünse oynayıp inceleme, gözlem notlarıyla yeniden üretme, doğrulama ve her anlamlı aşamayı GitHub'a yükleme.
+
 | Oyun | Klasör | Açıklama |
 | --- | --- | --- |
 | 01 · Mini Mart — Tarladan Rafa | [01-mini-mart](01-mini-mart/) | Üretim, raf doldurma, satış ve çalışan yönetimi içeren Türkçe 3B tarayıcı oyunu. |
